@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Checker</title>
+    
+    <!-- Add Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <div class="container mt-5">
+        <h1 class="mb-4">Weather Checker</h1>
+        
+        <form id="weatherForm" class="mb-3">
+            <div class="input-group">
+                <input type="text" id="location" name="location" class="form-control" placeholder="Enter Location" required>
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-primary">Check Weather</button>
+                </div>
+            </div>
+        </form>
+
+        <div id="weatherResult" class="card d-none">
+            <div class="card-body">
+                <h2 class="card-title" id="locationName"></h2>
+                <p class="card-text" id="temperature"></p>
+                <p class="card-text" id="humidity"></p>
+                <p class="card-text" id="windSpeed"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Bootstrap JS and Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        document.getElementById('weatherForm').addEventListener('submit', async function (event) {
+            event.preventDefault();
+
+            const locationInput = document.getElementById('location');
+            const location = locationInput.value;
+            
+            // Fetch weather data
+            const response = await fetch(`/weather/${location}`);
+            const data = await response.json();
+
+            // Update UI with weather information
+            document.getElementById('locationName').innerText = `${location} Weather`;
+            document.getElementById('temperature').innerText = `Temperature: ${data.temperature}°C`;
+            document.getElementById('humidity').innerText = `Humidity: ${data.humidity}%`;
+            document.getElementById('windSpeed').innerText = `Wind Speed: ${data.windSpeed} m/s`;
+
+            // Show the weather result box
+            document.getElementById('weatherResult').classList.remove('d-none');
+
+            // Clear the input field
+            locationInput.value = '';
+        });
+    </script>
+</body>
+</html>
