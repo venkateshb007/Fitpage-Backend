@@ -1,34 +1,55 @@
-# FITPAGE-Assignment
-#Weather API
-A simple RESTful API for retrieving real-time weather forecasts and historical data based on geographical locations.
+# Weather Forecast API
 
-Overview
-This project provides an API that allows users to manage location and retrieve weather information for those locations. It integrates with an external weather service
-API(e.g openWeatherMap) to fetch real-time weather data.
+## Introduction
 
-Features
- Location Management :
-   Add, retrieve, update and delete locations.
-   Each locations has a name, latitude and longitude.
- Weather Forecast :
-   Get real-time weather forecasts for specific locations.
-   Parameters include temperature, humidity, wind speed, etc.
- Endpoints :
-   /locations (GET, POST): Get all locations or add a new location.
-   /locations/<location_id> (GET, PUT, DELETE): Get, update, or delete a specific location by ID.
-   /weather/<location_id> (GET): Get the weather forecast for a specific location.
-   /history/<location_id> (GET): Get historical data and a summary.
+This project is a RESTful API providing real-time weather forecasts based on geographical locations. It allows users to manage locations, retrieve weather forecasts, and access historical weather data.
 
- Getting Started :
-  1.Install Dependencies :
-       npm install.
-  2.Set Environment Variables :
-       Create a .env file with your OpenWeatherMap API key :
-          OPEN_WEATHER_MAP_API_KEY=your_api_key_here
-  3.Run the Server :
-       node index.js
-  4.API Endpoints :
-       Access the API at http://localhost:3000.
+## Requirements
 
- Testing :
-   Use tools like Postman to make requests to various endpoints and ensure correct functionality.
+### Location Management
+
+- Users can add, retrieve, update, and delete locations.
+- Each location should have a name, latitude, and longitude.
+
+### Weather Forecast
+
+- Users can request weather forecasts for a specific location.
+- The API fetches real-time weather data from an external service (e.g., OpenWeatherMap, WeatherAPI).
+- Provides forecasts for parameters like temperature, humidity, wind speed, etc.
+
+### Endpoints
+
+#### Locations
+
+- `/locations` (GET, POST): Get all locations or add a new location
+- `/locations/<location_id>` (GET, PUT, DELETE): Get, update, or delete a specific location by ID
+
+#### Weather
+
+- `/weather/<location_id>` (GET): Get the weather forecast for a specific location
+
+#### History
+
+- `/history/<location_id>` (GET): Get historical data and show the summary for the last 7 days, 15 days, and 30 days
+
+### Technical Guidelines
+
+- Integrate with an external weather service API for real-time weather data.
+- Implement caching mechanisms to reduce external API calls.
+- Ensure proper error handling for unavailable external services.
+- Use validation for location data and handle edge cases gracefully.
+
+### Additional Considerations
+
+- Implement rate limiting to prevent API abuse.
+- Implement logging for API requests, especially those interacting with the external service.
+- Use environment variables for sensitive information like API keys.
+
+## Getting Started
+
+1. Install dependencies:npm install
+2. Create a .env file with the following content: OPEN_WEATHER_MAP_API_KEY=your-api-key
+PORT=3000
+eplace your-api-key with your actual OpenWeatherMap API key.
+3. Run the application: node index.js
+
