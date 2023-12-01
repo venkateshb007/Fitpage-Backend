@@ -40,21 +40,21 @@
             const locationInput = document.getElementById('location');
             const location = locationInput.value;
     
-           // Fetch weather data
+           // Fetching weather data
 const response = await fetch(`http://localhost:3000/weather/${encodeURIComponent(location)}`);
 const data = await response.json();
 
     
-            // Update UI with weather information
+            // Updating UI with weather information
             document.getElementById('locationName').innerText = `${location} Weather`;
             document.getElementById('temperature').innerText = `Temperature: ${data.temperature}°C`;
             document.getElementById('humidity').innerText = `Humidity: ${data.humidity}%`;
             document.getElementById('windSpeed').innerText = `Wind Speed: ${data.windSpeed} m/s`;
     
-            // Show the weather result box
+            // Showing the weather result box
             document.getElementById('weatherResult').classList.remove('d-none');
     
-            // Clear the input field
+            // Clearing the input field
             locationInput.value = '';
         });
     </script>

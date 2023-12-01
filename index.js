@@ -23,7 +23,7 @@ const limiter = rateLimit({
     max: 100,
 });
 
-// Apply rate limiting only to specific routes
+//rate limiting only to specific routes
 app.use('/locations', limiter);
 app.use('/weather', limiter);
 app.use('/history', limiter);
