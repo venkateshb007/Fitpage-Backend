@@ -89,7 +89,7 @@ async function fetchWeatherDataByName(locationName) {
         const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather`, {
             params: {
                 q: locationName.replace(/\s/g, '+'),
-                appid: apiKey,
+                appid: apiKey, //replace actual api key
                 units: 'metric',
             },
         });
